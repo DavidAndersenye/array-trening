@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tilfeldige Navn</title>
+</head>
+<body>
+    <h1>Tilfeldige Navn</h1>
+    <button onclick="plukkNavn()">Plukk Navn</button>
+    <p>De tilfeldige navnene er: <span id="tilfeldigeNavn"></span></p>
+
+    <script>
+        let arr = ["Hans", "Ole", "Nils", "Olav", "Per", "Knut", "Kari", "Line", "Pia"];
+
+        function plukkTilfeldigeNavn(arr, antallNavn) {
+            let valgteNavn = [];
+            let klonetArr = arr.slice(); // Lager en kopi av originalarrayen for å ikke endre den
+
+            while (valgteNavn.length < antallNavn && klonetArr.length > 0) {
+                const tilfeldigIndex = Math.floor(Math.random() * klonetArr.length);
+                const valgtNavn = klonetArr.splice(tilfeldigIndex, 1)[0];
+                valgteNavn.push(valgtNavn);
+            }
+
+            return valgteNavn;
+        }
+
+        function plukkNavn() {
+            let nyeNavn = plukkTilfeldigeNavn(arr, 5);
+            document.getElementById("tilfeldigeNavn").innerText = nyeNavn.join(", ");
+        }
+    </script>
+</body>
+</html>
